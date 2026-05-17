@@ -50,21 +50,38 @@
       const speakers = data.speakers || [];
       const grid = document.getElementById('speakers-grid');
       if (!speakers.length) { grid.innerHTML = '<p class="loading">More speakers coming soon...</p>'; return; }
-      grid.innerHTML = speakers.map(s => `
-        <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
-          <div class="photo">
-            ${s.photo_url
-              ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
-              : `<div class="initials">${getInitials(s.name)}</div>`}
-          </div>
-          <div class="body">
-            <h3>${s.name.trim()}</h3>
-            <p class="title">${s.title || ''}</p>
-            <p class="org">${s.organization || ''}</p>
-            <p class="talk">${s.talk_title || ''}</p>
-            ${s.linkedin_url ? `<div style="margin-top:.75rem;"><a href="${s.linkedin_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:0.25rem;color:#0a66c2;font-size:.75rem;text-decoration:none;font-weight:500;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg> LinkedIn</a></div>` : ''}
-          </div>
-        </a>`).join('');
+      // grid.innerHTML = speakers.map(s => `
+      //   <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
+      //     <div class="photo">
+      //       ${s.photo_url
+      //         ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
+      //         : `<div class="initials">${getInitials(s.name)}</div>`}
+      //     </div>
+      //     <div class="body">
+      //       <h3>${s.name.trim()}</h3>
+      //       <p class="title">${s.title || ''}</p>
+      //       <p class="org">${s.organization || ''}</p>
+      //       <p class="talk">${s.talk_title || ''}</p>
+      //       ${s.linkedin_url ? `<div style="margin-top:.75rem;"><a href="${s.linkedin_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:0.25rem;color:#0a66c2;font-size:.75rem;text-decoration:none;font-weight:500;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg> LinkedIn</a></div>` : ''}
+      //     </div>
+      //   </a>`).join('');
+
+grid.innerHTML = speakers.map(s => `
+  <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
+    <div class="photo">
+      ${s.photo_url
+        ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
+        : `<div class="initials">${getInitials(s.name)}</div>`}
+    </div>
+    <div class="body">
+      <h3>${s.name.trim()}</h3>
+      <p class="title">${s.title || ''}</p>
+      <p class="org">${s.organization || ''}</p>
+      <p class="talk">${s.talk_title || ''}</p>
+      ${s.linkedin_url ? `<div class="linkedin-wrapper"><svg>...</svg> LinkedIn</div>` : ''}
+    </div>
+  </a>`).join('');
+      
     }).catch(() => {
       document.getElementById('speakers-grid').innerHTML = '<p class="loading">Unable to load speakers.</p>';
     });
