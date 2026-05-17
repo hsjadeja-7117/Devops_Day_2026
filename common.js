@@ -22,7 +22,7 @@ function renderHeader() {
   document.getElementById('site-header').innerHTML = `
     <div class="header-inner">
       <a href="index.html" class="site-logo">
-        <img src="assets/logo.png" alt="AWS Community Day Ahmedabad 2026" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img src="assets/logo-devops-edition.png" alt="AWS Community Day Ahmedabad 2026" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span style="display:none;font-weight:800;color:#ea580c;font-size:1rem;">ACD Ahmedabad 2026</span>
       </a>
       <nav class="desktop-nav">${links}</nav>
