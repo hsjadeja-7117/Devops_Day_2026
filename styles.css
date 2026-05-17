@@ -57,7 +57,7 @@ p  { color: #4b5563; }
   display: flex; justify-content: space-between; align-items: center;
   height: 4rem;
 }
-.site-logo img { height:16rem; width: auto; object-fit: contain; padding: 0.25rem 0; }
+.site-logo img { height:15rem; width: auto; object-fit: contain; padding: 0.4rem 0; }
 .site-logo { display: flex; align-items: center; }
 
 nav.desktop-nav { display: none; }
