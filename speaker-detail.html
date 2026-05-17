@@ -53,7 +53,7 @@
                 <strong style="margin-left:.5rem;color:#111827;">${speaker.talk_length_minutes || '—'} minutes</strong>
               </div>
             </div>
-            ${speaker.bio ? `<div><h3 style="margin-bottom:.75rem;">About ${speaker.name.trim()}</h3><p style="line-height:1.75;">${speaker.bio}</p></div>` : ''}
+           ${speaker.bio ? `<div><h3 style="margin-bottom:.75rem;">About ${speaker.name.trim()}</h3><p style="line-height:1.75; white-space: pre-wrap;">${speaker.bio}</p></div>` : ''}
           </div>
         </div>`;
     }).catch(() => {
