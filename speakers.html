@@ -51,7 +51,7 @@
       const grid = document.getElementById('speakers-grid');
       if (!speakers.length) { grid.innerHTML = '<p class="loading">More speakers coming soon...</p>'; return; }
       grid.innerHTML = speakers.map(s => `
-        <a href="speaker-details.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
+        <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
           <div class="photo">
             ${s.photo_url
               ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
