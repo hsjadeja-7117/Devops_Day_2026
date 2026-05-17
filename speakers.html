@@ -50,6 +50,9 @@
       const speakers = data.speakers || [];
       const grid = document.getElementById('speakers-grid');
       if (!speakers.length) { grid.innerHTML = '<p class="loading">More speakers coming soon...</p>'; return; }
+
+/* this below block of css is not letting the structure looking good and well formated so commented out*/
+      
       // grid.innerHTML = speakers.map(s => `
       //   <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
       //     <div class="photo">
@@ -66,6 +69,8 @@
       //     </div>
       //   </a>`).join('');
 
+/*This below is correct in order to the formating of the speakers cards*/
+      
 grid.innerHTML = speakers.map(s => `
   <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
     <div class="photo">
