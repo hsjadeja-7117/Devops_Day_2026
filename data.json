@@ -132,5 +132,193 @@
   ],
   "volunteers": [],
   "sponsors": [],
-  "schedules": []
+  "schedules": [
+    {
+      "id": "sch-001",
+      "time_slot": "08:00 AM - 09:20 AM",
+      "track_number": 1,
+      "title": "Registration, Networking & Breakfast",
+      "speaker": "",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 08:00:00+00"
+    },
+    {
+      "id": "sch-002",
+      "time_slot": "09:20 AM - 09:30 AM",
+      "track_number": 1,
+      "title": "Pre-engagement activities",
+      "speaker": "",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 09:20:00+00"
+    },
+    {
+      "id": "sch-003",
+      "time_slot": "09:30 AM - 09:45 AM",
+      "track_number": 1,
+      "title": "Welcome note by Ahmedabad User Group Member",
+      "speaker": "",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 09:30:00+00"
+    },
+    {
+      "id": "sch-004",
+      "time_slot": "09:45 AM - 10:15 AM",
+      "track_number": 1,
+      "title": "Opening Keynote - Setting the Tone for Modern DevOps",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 09:45:00+00"
+    },
+    {
+      "id": "sch-005",
+      "time_slot": "10:15 AM - 10:45 AM",
+      "track_number": 1,
+      "title": "Technical Keynote",
+      "speaker": "Vishal Alhat",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 10:15:00+00"
+    },
+    {
+      "id": "sch-006",
+      "time_slot": "10:45 AM - 11:15 AM",
+      "track_number": 1,
+      "title": "Sponsor Tech Session - Real-World Solutions in Action",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 10:45:00+00"
+    },
+    {
+      "id": "sch-007",
+      "time_slot": "11:15 AM - 11:45 AM",
+      "track_number": 1,
+      "title": "Technical Session 1",
+      "speaker": "Shubham Londhe",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 11:15:00+00"
+    },
+    {
+      "id": "sch-008",
+      "time_slot": "11:45 AM - 12:15 PM",
+      "track_number": 1,
+      "title": "Technical Session 2",
+      "speaker": "Nasiullha Chaudhari",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 11:45:00+00"
+    },
+    {
+      "id": "sch-009",
+      "time_slot": "12:15 PM - 12:45 PM",
+      "track_number": 1,
+      "title": "Panel Discussion or Engagement Activities",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 12:15:00+00"
+    },
+    {
+      "id": "sch-010",
+      "time_slot": "12:45 PM - 02:00 PM",
+      "track_number": 1,
+      "title": "Lunch Break & Networking",
+      "speaker": "",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 12:45:00+00"
+    },
+    {
+      "id": "sch-011",
+      "time_slot": "02:00 PM - 02:30 PM",
+      "track_number": 1,
+      "title": "Technical Session 3",
+      "speaker": "Ashish Kumar",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 14:00:00+00"
+    },
+    {
+      "id": "sch-012",
+      "time_slot": "02:30 PM - 03:00 PM",
+      "track_number": 1,
+      "title": "Technical Session 4",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 14:30:00+00"
+    },
+    {
+      "id": "sch-013",
+      "time_slot": "03:00 PM - 03:30 PM",
+      "track_number": 1,
+      "title": "Technical Session 5",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 15:00:00+00"
+    },
+    {
+      "id": "sch-014",
+      "time_slot": "03:30 PM - 04:00 PM",
+      "track_number": 1,
+      "title": "Tea Break & Networking",
+      "speaker": "",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 15:30:00+00"
+    },
+    {
+      "id": "sch-015",
+      "time_slot": "04:00 PM - 04:30 PM",
+      "track_number": 1,
+      "title": "Technical Session 6",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 16:00:00+00"
+    },
+    {
+      "id": "sch-016",
+      "time_slot": "04:30 PM - 05:00 PM",
+      "track_number": 1,
+      "title": "Technical Session 7",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 16:30:00+00"
+    },
+    {
+      "id": "sch-017",
+      "time_slot": "05:00 PM - 05:15 PM",
+      "track_number": 1,
+      "title": "Concluding Session",
+      "speaker": "To Be Announced",
+      "room": "Main Track",
+      "sort_order": null,
+      "created_at": "2026-05-17 10:00:00+00",
+      "start_time": "2026-05-17 17:00:00+00"
+    }
+  ]
 }
