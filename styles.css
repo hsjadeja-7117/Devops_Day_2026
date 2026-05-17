@@ -208,7 +208,7 @@ section { padding: 3rem 0; }
   text-align: center;
 }
 @media (min-width: 768px) { .home-hero { padding: 5rem 0 5rem; } }
-.home-hero .badge-img { width: 100%; max-width: 360px; margin: 0 auto 2rem; display: block; }
+.home-hero .badge-img { width: 100%; max-width: 250px; margin: 0 auto 2rem; display: block; }
 .home-hero .tag {
   display: inline-flex; align-items: center; gap: 0.5rem;
   background: #ffedd5; color: var(--orange);
