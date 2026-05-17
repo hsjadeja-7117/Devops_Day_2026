@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speakers | AWS Community Day 2026</title>
+  <meta name="description" content="Meet the speakers at AWS Community Day 2026. Learn from industry experts sharing their knowledge on AWS and cloud technologies." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Our Speakers</h1>
+        <p>Learn from industry experts and thought leaders in the AWS community.</p>
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <div class="container">
+        <div class="grid-3" id="speakers-grid"><p class="loading">Loading speakers...</p></div>
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <div class="container" style="max-width:56rem;">
+        <h2 style="text-align:center;margin-bottom:2rem;">Get Involved</h2>
+        <div class="grid-2">
+          <div class="orange-box">
+            <h3 style="margin-bottom:.75rem;">Attend Our Meetups</h3>
+            <p style="margin-bottom:1rem;">Join our regular monthly meetups to network with fellow AWS enthusiasts and learn about the latest AWS services and best practices.</p>
+            <a href="https://www.meetup.com/ahmedabad-amazon-aws-cloud-meetup/" target="_blank" rel="noopener" class="text-orange" style="font-weight:500;">Find meetups →</a>
+          </div>
+          <div class="orange-box">
+            <h3 style="margin-bottom:.75rem;">Become a Speaker</h3>
+            <p style="margin-bottom:1rem;">Share your AWS knowledge and experience with our community. We're always looking for speakers at all levels.</p>
+            <a href="https://forms.gle/bR4cuskhdCK3dtHu8" target="_blank" rel="noopener" class="text-orange" style="font-weight:500;">Submit talk proposal →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    fetch('data.json').then(r => r.json()).then(data => {
+      const speakers = data.speakers || [];
+      const grid = document.getElementById('speakers-grid');
+      if (!speakers.length) { grid.innerHTML = '<p class="loading">More speakers coming soon...</p>'; return; }
+      grid.innerHTML = speakers.map(s => `
+        <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
+          <div class="photo">
+            ${s.photo_url
+              ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
+              : `<div class="initials">${getInitials(s.name)}</div>`}
+          </div>
+          <div class="body">
+            <h3>${s.name.trim()}</h3>
+            <p class="title">${s.title || ''}</p>
+            <p class="org">${s.organization || ''}</p>
+            <p class="talk">${s.talk_title || ''}</p>
+            ${s.linkedin_url ? `<div style="margin-top:.75rem;"><a href="${s.linkedin_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:#9ca3af;font-size:.75rem;">🔗 LinkedIn</a></div>` : ''}
+          </div>
+        </a>`).join('');
+    }).catch(() => {
+      document.getElementById('speakers-grid').innerHTML = '<p class="loading">Unable to load speakers.</p>';
+    });
+  </script>
+</body>
+</html>

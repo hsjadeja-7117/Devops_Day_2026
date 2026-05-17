@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule | AWS Community Day 2026</title>
+  <meta name="description" content="Check out the agenda for AWS Community Day 2026. Three tracks of sessions covering Serverless, Containers, AI/ML, Security, and more." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="bg-gray" style="min-height:100vh;padding:3rem 0;">
+      <div class="container">
+        <div class="section-title">
+          <h1>Event Schedule</h1>
+          <p class="section-subtitle">Plan your day across three tracks of technical sessions, workshops, and networking opportunities.</p>
+        </div>
+        <div id="schedule-content"><p class="loading">Loading schedule...</p></div>
+        <div class="text-center" style="margin-top:2rem;">
+          <a href="tickets.html" class="btn-primary">📅 Reserve Your Spot</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    fetch('data.json').then(r => r.json()).then(data => {
+      const schedules = data.schedules || [];
+      const el = document.getElementById('schedule-content');
+      if (!schedules.length) { el.innerHTML = '<p class="loading">Coming Soon</p>'; return; }
+
+      // Group by time_slot
+      const grouped = {};
+      schedules.forEach(e => {
+        if (!grouped[e.time_slot]) grouped[e.time_slot] = [];
+        grouped[e.time_slot].push(e);
+      });
+      // Sort by start_time of first entry
+      const sorted = Object.entries(grouped).sort((a,b) => {
+        const ta = a[1][0]?.start_time || '';
+        const tb = b[1][0]?.start_time || '';
+        return ta.localeCompare(tb);
+      });
+
+      const rows = sorted.map(([slot, entries], i) => {
+        const cells = [1,2,3].map(t => {
+          const e = entries.find(x => x.track_number === t);
+          return e ? `<td class="schedule-table-td">
+            <span class="schedule-talk-title">${e.title}</span>
+            ${e.speaker ? `<span class="schedule-speaker">${e.speaker}</span>` : ''}
+            ${e.room ? `<span class="schedule-room">📍 ${e.room}</span>` : ''}
+          </td>` : '<td class="schedule-table-td"><span style="color:#9ca3af">—</span></td>';
+        }).join('');
+        return `<tr style="${i%2===0?'':'background:#f9fafb'}">
+          <td class="schedule-table-td" style="font-weight:600;white-space:nowrap;border-right:1px solid #e5e7eb;">
+            <span style="color:#ea580c;">⏰</span> ${slot}
+          </td>${cells}</tr>`;
+      }).join('');
+
+      el.innerHTML = `<div class="schedule-table-wrap">
+        <table class="schedule-table">
+          <thead><tr>
+            <th style="position:sticky;left:0;background:#f9fafb;z-index:5;">Time</th>
+            <th>Track 1</th><th>Track 2</th><th>Track 3</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+    }).catch(() => {
+      document.getElementById('schedule-content').innerHTML = '<p class="loading">Unable to load schedule.</p>';
+    });
+  </script>
+  <style>
+    .schedule-table-td { padding:1rem 1.5rem; font-size:.875rem; vertical-align:top; }
+  </style>
+</body>
+</html>

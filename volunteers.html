@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volunteer | AWS Community Day 2026</title>
+  <meta name="description" content="Here is our rockstar volunteer team for AWS Community Day Ahmedabad 2026." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Our Rockstar Volunteers</h1>
+      </div>
+    </section>
+    <section class="bg-white">
+      <div class="volunteers-grid" id="vol-grid">
+        <p class="loading" style="grid-column:1/-1;">Loading volunteers...</p>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    fetch('data.json').then(r => r.json()).then(data => {
+      const volunteers = data.volunteers || [];
+      const grid = document.getElementById('vol-grid');
+      if (!volunteers.length) { grid.innerHTML = '<p class="loading" style="grid-column:1/-1;">No volunteers yet.</p>'; return; }
+      grid.innerHTML = volunteers.map(v => `
+        <div class="card vol-card">
+          <div class="photo">
+            ${v.photo_url
+              ? `<img src="${v.photo_url}" alt="${v.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(v.name)}</div>'">`
+              : `<div class="initials">${getInitials(v.name)}</div>`}
+          </div>
+          <div class="body">
+            <h3>${v.name.trim()}</h3>
+            ${v.linkedin_url ? `<a href="${v.linkedin_url}" target="_blank" rel="noopener" style="font-size:.75rem;color:#9ca3af;display:inline-block;margin-top:.25rem;">🔗</a>` : ''}
+          </div>
+        </div>`).join('');
+    }).catch(() => {
+      document.getElementById('vol-grid').innerHTML = '<p class="loading">Unable to load volunteers.</p>';
+    });
+  </script>
+</body>
+</html>

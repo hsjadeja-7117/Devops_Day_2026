@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsors | AWS Community Day 2026</title>
+  <meta name="description" content="Learn about our sponsors for AWS Community Day 2026. Interested in sponsoring? Check out our sponsorship packages." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Our Sponsors</h1>
+        <p>Supporting the AWS community through strategic partnerships.</p>
+      </div>
+    </section>
+    <section class="bg-white">
+      <div class="container">
+        <div id="sponsors-content"><p class="loading">Loading sponsors...</p></div>
+      </div>
+    </section>
+    <section class="bg-gray">
+      <div class="container" style="max-width:48rem;text-align:center;">
+        <h2 style="margin-bottom:1rem;">Become a Sponsor</h2>
+        <p style="margin-bottom:2rem;">Interested in supporting AWS Community Day 2026? We offer various sponsorship packages to match your business goals and budget.</p>
+        <a href="assets/sponsorship-prospectus.pdf" download class="btn-primary" style="display:inline-flex;">Download Sponsorship Prospectus</a>
+        <p style="margin-top:1rem;font-size:.875rem;">Questions? Contact us at <a href="mailto:awsugahm@gmail.com" class="text-orange">awsugahm@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    const TIERS = ["Platinum Sponsors","Gold Sponsors","Silver Sponsors","Booth Sponsors","Special Partner","Community Partners","Ticketing Partners","Venue Partners"];
+    const TIER_COLS = { "Platinum Sponsors":"repeat(2,1fr)", "Gold Sponsors":"repeat(2,1fr)", default:"repeat(2,1fr)" };
+
+    fetch('data.json').then(r => r.json()).then(data => {
+      const sponsors = data.sponsors || [];
+      const el = document.getElementById('sponsors-content');
+      if (!sponsors.length) { el.innerHTML = '<p class="loading">Sponsors coming soon.</p>'; return; }
+
+      const grouped = {};
+      TIERS.forEach(t => { grouped[t] = sponsors.filter(s => s.tier === t); });
+
+      el.innerHTML = TIERS.map(tier => {
+        const list = grouped[tier] || [];
+        if (!list.length) return '';
+        const cols = tier.includes('Platinum') ? 'repeat(2,1fr)' : tier.includes('Gold') ? 'repeat(3,1fr)' : 'repeat(2,1fr)';
+        return `<div class="sponsor-tier">
+          <h2>${tier}</h2>
+          <div style="display:grid;grid-template-columns:${cols};gap:1.5rem;">
+            ${list.map(sp => `
+              <a href="${sp.website_url || '#'}" target="_blank" rel="noopener" class="sponsor-card">
+                <div class="logo-wrap"><img src="${sp.logo_url}" alt="${sp.company_name}" loading="lazy" onerror="this.style.display='none'" /></div>
+                <h3>${sp.company_name}</h3>
+                ${sp.description ? `<p style="font-size:.75rem;color:#6b7280;margin-top:.5rem;">${sp.description}</p>` : ''}
+              </a>`).join('')}
+          </div>
+        </div>`;
+      }).join('');
+    }).catch(() => {
+      document.getElementById('sponsors-content').innerHTML = '<p class="loading">Unable to load sponsors.</p>';
+    });
+  </script>
+</body>
+</html>

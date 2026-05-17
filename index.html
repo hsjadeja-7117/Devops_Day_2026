@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Community Day Ahmedabad 2026</title>
+  <meta name="description" content="Join AWS Community Day 2026 on 28th Feb in Ahmedabad. Learn from industry leaders, connect with fellow cloud enthusiasts, and explore the latest in AWS technologies." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <!-- HERO -->
+    <section class="home-hero">
+      <div class="container">
+        <img src="assets/badge.png" alt="AWS Community Day Ahmedabad Badge" class="badge-img" />
+        <div class="tag">✨ Presenting</div>
+        <h1>AWS Community Day Ahmedabad<span> 2026</span></h1>
+        <p class="subtitle">Connect with cloud professionals and students. Learn from industry leaders. Shape the future of cloud computing in Gujarat.</p>
+        <div class="cta-group">
+          <a href="tickets.html" class="btn-primary">Get Your Tickets →</a>
+          <a href="speakers.html" class="btn-outline">See Speakers</a>
+        </div>
+        <div class="event-meta">
+          <div><div class="icon">📅</div><p>February 28, 2026</p></div>
+          <div><div class="icon">📍</div><p>Ahmedabad, Gujarat</p></div>
+          <div><div class="icon">👥</div><p>1500+ attendees</p></div>
+        </div>
+        <div id="countdown"></div>
+      </div>
+    </section>
+
+    <!-- FEATURED SPEAKERS -->
+    <section class="bg-white">
+      <div class="container">
+        <h2 class="section-title">Featured Speakers</h2>
+        <div class="grid-3" id="speakers-grid"><p class="loading">Loading speakers...</p></div>
+        <div class="text-center" style="margin-top:3rem;" id="view-all-speakers"></div>
+      </div>
+    </section>
+
+    <!-- SPONSORS SCROLL -->
+    <section class="bg-gray">
+      <div class="container">
+        <h2 class="section-title">Our Sponsors</h2>
+        <div class="sponsor-scroll-outer" id="sponsor-scroll-outer">
+          <p class="loading">Loading sponsors...</p>
+        </div>
+        <div class="text-center" style="margin-top:2rem;">
+          <a href="sponsors.html" class="text-orange" style="font-weight:600;">Become a Sponsor →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY ATTEND -->
+    <section class="bg-white">
+      <div class="container">
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Community Driven</h3>
+            <p>Organized by and for the AWS community in Gujarat. Connect with peers who share your passion for cloud.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Learn &amp; Grow</h3>
+            <p>Attend talks from industry experts covering latest AWS trends, best practices, and real-world implementations.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <h3>Network &amp; Connect</h3>
+            <p>Meet cloud professionals, students, and enthusiasts. Build lasting relationships and collaborations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    // Countdown
+    startCountdown('2026-02-28T08:00:00+05:30', 'countdown');
+
+    // Load data
+    fetch('data.json')
+      .then(r => r.json())
+      .then(data => {
+        // Speakers
+        const speakers = (data.speakers || []).slice(0, 3);
+        const sg = document.getElementById('speakers-grid');
+        if (speakers.length) {
+          sg.innerHTML = speakers.map(s => `
+            <a href="speaker-detail.html?id=${s.id}" class="card speaker-card">
+              <div class="photo">
+                ${s.photo_url
+                  ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
+                  : `<div class="initials">${getInitials(s.name)}</div>`}
+              </div>
+              <div class="body">
+                <h3>${s.name}</h3>
+                <p class="title">${s.title || ''}</p>
+                <p class="org">${s.organization || ''}</p>
+                <p class="talk">${s.talk_title || ''}</p>
+              </div>
+            </a>`).join('');
+          document.getElementById('view-all-speakers').innerHTML =
+            `<a href="speakers.html" class="text-orange" style="font-weight:600;display:inline-flex;align-items:center;gap:.5rem;">View All Speakers →</a>`;
+        } else {
+          sg.innerHTML = '<p class="loading">Speakers coming soon!</p>';
+        }
+
+        // Sponsors scroll
+        const sponsors = data.sponsors || [];
+        const outer = document.getElementById('sponsor-scroll-outer');
+        if (sponsors.length) {
+          const doubled = [...sponsors, ...sponsors];
+          outer.innerHTML = `<div class="sponsor-scroll-track">${
+            doubled.map(sp => `
+              <a href="${sp.website_url || '#'}" target="_blank" rel="noopener" class="sponsor-logo-item">
+                <img src="${sp.logo_url}" alt="${sp.company_name}" loading="lazy" onerror="this.style.display='none'" />
+              </a>`).join('')
+          }</div>`;
+        } else {
+          outer.innerHTML = '<p class="loading">Sponsor logos coming soon...</p>';
+        }
+      })
+      .catch(() => {
+        document.getElementById('speakers-grid').innerHTML = '<p class="loading">Unable to load speakers.</p>';
+      });
+  </script>
+</body>
+</html>

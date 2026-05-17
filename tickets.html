@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tickets | AWS Community Day 2026</title>
+  <meta name="description" content="Get your tickets for AWS Community Day 2026. Choose from Super Early Bird, Early Bird, Regular, or Community Patron passes." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Get Your Tickets</h1>
+        <p>Choose the perfect ticket tier for your AWS Community Day experience.</p>
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <div class="container">
+        <div class="tickets-grid" id="tickets-grid"></div>
+
+        <div class="info-card" style="max-width:42rem;margin:3rem auto 0;">
+          <h2 style="margin-bottom:1.5rem;">Note</h2>
+          <h3 style="margin-bottom:.5rem;">🎟️ Bringing your team? Bulk discounts unlocked!</h3>
+          <p style="margin-bottom:1.5rem;">Team ke saath aana = learning + savings dono 💸☁️</p>
+          <div class="grid-3" style="margin-bottom:1.5rem;">
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:.5rem;padding:.75rem;text-align:center;">
+              <div style="font-size:1.5rem;font-weight:800;color:#ea580c;">5% OFF</div>
+              <div style="font-size:.875rem;color:#6b7280;">On 10 tickets</div>
+            </div>
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:.5rem;padding:.75rem;text-align:center;">
+              <div style="font-size:1.5rem;font-weight:800;color:#ea580c;">10% OFF</div>
+              <div style="font-size:.875rem;color:#6b7280;">On 20 tickets</div>
+            </div>
+            <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:.5rem;padding:.75rem;text-align:center;">
+              <div style="font-size:1.5rem;font-weight:800;color:#ea580c;">20% OFF</div>
+              <div style="font-size:.875rem;color:#6b7280;">On 30+ tickets</div>
+            </div>
+          </div>
+          <ul style="list-style:none;margin-bottom:1.5rem;">
+            <li style="display:flex;gap:.5rem;margin-bottom:.5rem;">🧠 Zyada log = zyada ideas</li>
+            <li style="display:flex;gap:.5rem;margin-bottom:.5rem;">🤝 Zyada log = stronger connections</li>
+            <li style="display:flex;gap:.5rem;">🚀 Zyada log = better learning experience</li>
+          </ul>
+          <p>📩 For bulk bookings &amp; queries: <a href="mailto:awsugahm@gmail.com" class="text-orange" style="font-weight:500;">awsugahm@gmail.com</a></p>
+          <div class="alert-orange" style="margin-top:1.5rem;">
+            <p><strong>👉 Socho mat zyada. Team lao, seekho, aur grow karo together. ⚠️ Discounts apply on base ticket price only. GST &amp; platform fees applicable.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray">
+      <div class="container" style="max-width:42rem;">
+        <h2 style="text-align:center;margin-bottom:2rem;">Refund Policy</h2>
+        <div class="info-card">
+          <ul class="list-check">
+            <li>Registration charges are non refundable and non transferable.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    const TIERS = [
+      { id:'super-early-bird', name:'Super Early Bird', price:599, currency:'INR', desc:'For the earliest supporters.', sold:100, limit:100,
+        includes:['Access to conference on 28th February, 2026','Welcome Kit','Morning breakfast','Afternoon lunch','Evening hi-tea','Eligible for goodies','Builder Zone & Booth visits','Networking to other peers at event day'],
+        url:'https://konfhub.com/checkout/aws-community-day-ahmedabad-2026', featured:false },
+      { id:'early-bird', name:'Early Bird', price:799, currency:'INR', desc:'Grab your tickets early!', sold:150, limit:150,
+        includes:['Access to conference on 28th February, 2026','Welcome Kit','Morning breakfast','Afternoon lunch','Evening hi-tea','Eligible for goodies','Builder Zone & Booth visits','Networking to other peers at event day'],
+        url:'https://konfhub.com/checkout/aws-community-day-ahmedabad-2026', featured:false },
+      { id:'regular', name:'Regular', price:1099, currency:'INR', desc:'Standard conference access.', sold:0, limit:500,
+        includes:['Access to conference on 28th February, 2026','Welcome Kit','Morning breakfast','Afternoon lunch','Evening hi-tea','Eligible for goodies','Builder Zone & Booth visits','Networking to other peers at event day'],
+        url:'https://konfhub.com/checkout/aws-community-day-ahmedabad-2026', featured:false },
+      { id:'patron', name:'Community Patron', minPrice:2000, maxPrice:25000, currency:'INR', desc:'Elevate your experience & support the community.', sold:0, limit:50,
+        includes:['All Standard Benefits','Front-row prime seating','Recognition as a valued community supporter on website','Networking opportunities with top industry experts','Special Patron Badge'],
+        url:'https://konfhub.com/checkout/aws-community-day-ahmedabad-2026', featured:true },
+    ];
+
+    const grid = document.getElementById('tickets-grid');
+    grid.innerHTML = TIERS.map(t => {
+      const soldOut = t.sold >= t.limit;
+      const priceStr = t.minPrice ? `₹${t.minPrice.toLocaleString()} – ${t.maxPrice.toLocaleString()}` : `₹${t.price.toLocaleString()}`;
+      return `<div class="ticket-card ${t.featured ? 'featured' : ''}">
+        ${t.featured ? '<div class="featured-badge">Most Popular</div>' : ''}
+        <div class="body">
+          <h3>${t.name}</h3>
+          <p class="desc">${t.desc}</p>
+          <div class="price">${priceStr}</div>
+          ${soldOut
+            ? '<span class="sold-out">Sold Out</span>'
+            : `<a href="${t.url}" target="_blank" rel="noopener" class="buy-btn ${t.featured ? 'filled' : 'outline'}">Buy Tickets</a>`}
+          <p style="font-size:.875rem;font-weight:600;margin-bottom:.75rem;">What's Included:</p>
+          <ul class="includes-list">${t.includes.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+    }).join('');
+  </script>
+</body>
+</html>

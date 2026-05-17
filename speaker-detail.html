@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speaker | AWS Community Day 2026</title>
+  <link rel="icon" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <div class="container" style="max-width:56rem;padding-top:3rem;padding-bottom:3rem;">
+      <a href="speakers.html" class="back-link">← Back to Speakers</a>
+      <div id="speaker-detail"><p class="loading">Loading...</p></div>
+    </div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="common.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const speakerId = params.get('id');
+    const speakerIdx = parseInt(params.get('idx') || '-1', 10);
+
+    fetch('data.json').then(r => r.json()).then(data => {
+      const speakers = data.speakers || [];
+      let speaker = speakers.find(s => s.id === speakerId);
+      if (!speaker && speakerIdx >= 0) speaker = speakers[speakerIdx];
+      const el = document.getElementById('speaker-detail');
+      if (!speaker) {
+        el.innerHTML = `<p style="color:#6b7280;">Speaker not found.</p><a href="speakers.html" class="text-orange" style="margin-top:1rem;display:inline-block;">Back to Speakers</a>`;
+        return;
+      }
+      document.title = `${speaker.name.trim()} | AWS Community Day 2026`;
+      el.innerHTML = `
+        <div class="speaker-detail-grid">
+          <div>
+            ${speaker.photo_url
+              ? `<img src="${speaker.photo_url}" alt="${speaker.name}" class="speaker-detail-img" onerror="this.outerHTML='<div class=initials style=width:100%;aspect-ratio:1/1;border-radius:.75rem;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:4rem;font-weight:700>${getInitials(speaker.name)}</div>'">`
+              : `<div style="width:100%;aspect-ratio:1/1;border-radius:.75rem;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:4rem;font-weight:700;">${getInitials(speaker.name)}</div>`}
+            ${speaker.linkedin_url ? `<div style="margin-top:1rem;"><a href="${speaker.linkedin_url}" target="_blank" rel="noopener" style="color:#9ca3af;font-size:.875rem;">🔗 LinkedIn</a></div>` : ''}
+          </div>
+          <div>
+            <h1 style="font-size:2.25rem;margin-bottom:.5rem;">${speaker.name.trim()}</h1>
+            <p style="font-size:1.125rem;color:#4b5563;margin-bottom:.25rem;">${speaker.title || ''}</p>
+            <p style="color:#9ca3af;margin-bottom:1.5rem;">${speaker.organization || ''}</p>
+            <div class="orange-box" style="margin-bottom:2rem;">
+              <h2 style="font-size:1.25rem;margin-bottom:.75rem;">Talk: ${speaker.talk_title || ''}</h2>
+              ${speaker.abstract && speaker.abstract !== 'TBA' && speaker.abstract !== 'tba' ? `<p style="margin-bottom:1rem;">${speaker.abstract}</p>` : ''}
+              <div style="font-size:.875rem;color:#4b5563;">
+                <span>Duration:</span>
+                <strong style="margin-left:.5rem;color:#111827;">${speaker.talk_length_minutes || '—'} minutes</strong>
+              </div>
+            </div>
+            ${speaker.bio ? `<div><h3 style="margin-bottom:.75rem;">About ${speaker.name.trim()}</h3><p style="line-height:1.75;">${speaker.bio}</p></div>` : ''}
+          </div>
+        </div>`;
+    }).catch(() => {
+      document.getElementById('speaker-detail').innerHTML = '<p class="loading">Unable to load speaker.</p>';
+    });
+  </script>
+</body>
+</html>
