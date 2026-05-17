@@ -12,7 +12,7 @@
   <header id="site-header"></header>
   <main>
     <div class="container" style="max-width:56rem;padding-top:3rem;padding-bottom:3rem;">
-      <a href="speakers.html" class="back-link">← Back to Speakers</a>
+      <a href="speaker.html" class="back-link">← Back to Speakers</a>
       <div id="speaker-detail"><p class="loading">Loading...</p></div>
     </div>
   </main>
@@ -29,7 +29,7 @@
       if (!speaker && speakerIdx >= 0) speaker = speakers[speakerIdx];
       const el = document.getElementById('speaker-detail');
       if (!speaker) {
-        el.innerHTML = `<p style="color:#6b7280;">Speaker not found.</p><a href="speakers.html" class="text-orange" style="margin-top:1rem;display:inline-block;">Back to Speakers</a>`;
+        el.innerHTML = `<p style="color:#6b7280;">Speaker not found.</p><a href="speaker.html" class="text-orange" style="margin-top:1rem;display:inline-block;">Back to Speakers</a>`;
         return;
       }
       document.title = `${speaker.name.trim()} | AWS Community Day 2026`;
