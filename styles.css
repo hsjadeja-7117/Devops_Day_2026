@@ -177,31 +177,31 @@ section { padding: 3rem 0; }
 }
 .card:hover { box-shadow: 0 10px 25px rgba(0,0,0,.1); border-color: var(--orange-border); }
 
-/* ===== SPEAKER CARD ===== */
-.speaker-card { display: block; }
+/* ===== SPEAKER CARD ===== */     /* the first block is completely commented as the formate was having some problem and new css for card is pasted below */
+/* .speaker-card { display: block; }
 .speaker-card .photo {
-  aspect-ratio: 1 / 1; /* Forces a perfect square */
-  width: 100%;
+  aspect-ratio: 1 / 1; /* Forces a perfect square */ */
+  /* width: 100%;
   overflow: hidden;
   background: var(--gray-200);
-  display: flex; /* Ensures initials stay centered */
-  align-items: center;
+  display: flex; /* Ensures initials stay centered */ */
+  /* align-items: center;
   justify-content: center;
-}
-.speaker-card .photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This is the "magic" line—it crops instead of stretching */
-  object-position: center; /* Keeps faces centered */
-  display: block;
-}
-.speaker-card:hover .photo img { transform: scale(1.05); }
+} */
+/* .speaker-card .photo img {
+  width: 100%; */
+  /* height: 100%; */
+  /* object-fit: cover; /* This is the "magic" line—it crops instead of stretching */ */
+  /* object-position: center; /* Keeps faces centered */ */
+  /* display: block;
+} */
+/* .speaker-card:hover .photo img { transform: scale(1.05); }
 .speaker-card .photo .initials {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   background: linear-gradient(135deg, #f97316, #ea580c);
   color: #fff; font-size: 3rem; font-weight: 700;
-}
+} */
 /* .speaker-card .body { padding: 1.25rem; }
 .speaker-card .body h3 { font-size: 1.125rem; color: var(--gray-900); transition: color .2s; }
 .speaker-card:hover .body h3 { color: var(--orange); }
@@ -209,12 +209,68 @@ section { padding: 3rem 0; }
 .speaker-card .body .org { font-size: 0.75rem; color: var(--gray-500); margin-top: 0.25rem; }
 .speaker-card .body .talk { font-size: 0.875rem; font-weight: 500; color: var(--orange); margin-top: 0.75rem; } */
 
+/*=here is the new css for card section=*/
+/* ===== SPEAKER CARD ===== */
+.speaker-card { display: block; }
+
+.speaker-card .photo {
+  aspect-ratio: 1 / 1; 
+  width: 100%;
+  overflow: hidden;
+  background: var(--gray-200);
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
+.speaker-card .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: center; 
+  display: block;
+}
+
+.speaker-card:hover .photo img { transform: scale(1.05); }
+
+/* This styles the text properly like the orange template */
 .speaker-card .body {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures all cards in a row have the same height */
-  min-height: 180px; /* Adjust this number until the row looks even */
+  height: 100%; 
+  min-height: 180px; 
+}
+
+.speaker-card .body h3 { 
+  font-size: 1.125rem; 
+  color: var(--gray-900); 
+  transition: color .2s; 
+  margin-bottom: 0.25rem;
+}
+
+.speaker-card:hover .body h3 { color: var(--orange); }
+
+.speaker-card .body .title { 
+  font-size: 0.875rem; 
+  color: var(--gray-600); 
+  line-height: 1.4;
+}
+
+.speaker-card .body .org { 
+  font-size: 0.75rem; 
+  color: var(--gray-400); 
+  margin-top: 0.25rem; 
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.speaker-card .body .talk { 
+  font-size: 0.875rem; 
+  font-weight: 600; 
+  color: var(--orange); 
+  margin-top: auto; /* Pushes the talk title to the bottom of the card */
+  padding-top: 1rem;
 }
 
 /* ===== HOME HERO ===== */
