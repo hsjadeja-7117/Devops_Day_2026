@@ -131,7 +131,27 @@
     }
   ],
   "volunteers": [],
-  "sponsors": [],
+  "sponsors": [{
+  "company_name": "Special Partner 1",
+  "logo_url": "assets/special-partner-1.png",
+  "website_url": "https://example.com",
+  "tier": "Special Partner",
+  "description": "Brief description of Special Partner 1 properties and contributions."
+},
+{
+  "company_name": "Special Partner 2",
+  "logo_url": "assets/special-partner-2.png",
+  "website_url": "https://example.com",
+  "tier": "Special Partner",
+  "description": "Brief description of Special Partner 2 properties and contributions."
+},
+{
+  "company_name": "Special Partner 3",
+  "logo_url": "assets/special-partner-3.png",
+  "website_url": "https://example.com",
+  "tier": "Special Partner",
+  "description": "Brief description of Special Partner 3 properties and contributions."
+}],
   "schedules": [
     {
       "id": "sch-001",
