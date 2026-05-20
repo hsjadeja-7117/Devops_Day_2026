@@ -388,7 +388,8 @@ section { padding: 3rem 0; }
   background: #fff; 
   border: 1px solid var(--gray-200);
   border-radius: 0.75rem; 
-  padding: 1.5rem; 
+  padding: 1.25rem; 
+  max-width: 14rem;
   aspect-ratio: 1 / 1; /* FORCES a perfect square just like your speaker cards! */
   transition: box-shadow .2s, border-color .2s;
   text-align: center;
@@ -403,7 +404,7 @@ section { padding: 3rem 0; }
   margin-bottom: 1rem; 
 }
 .sponsor-card .logo-wrap img { 
-  max-height: 6rem; /* Slightly larger maximum limit for text logos */
+  max-height: 4.5rem; /* Slightly larger maximum limit for text logos */
   max-width: 90%; 
   object-fit: contain; /* Prevents landscape logos from stretching */
   transition: transform .3s; 
