@@ -132,11 +132,11 @@
   ],
   "volunteers": [],
   "sponsors": [{
-  "company_name": "Special Partner 1",
-  "logo_url": "assets/special-partner-1.png",
+  "company_name": "ACM Ahmedabad",
+  "logo_url": "assets/ACM_AHmedabad_logo.jpeg",
   "website_url": "https://example.com",
   "tier": "Special Partner",
-  "description": "Brief description of Special Partner 1 properties and contributions."
+  "description": "Community Partner – ACM Ahmedabad Chapter"
 },
 {
   "company_name": "Special Partner 2",
