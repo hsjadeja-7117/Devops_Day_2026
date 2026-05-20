@@ -49,7 +49,7 @@
       el.innerHTML = TIERS.map(tier => {
         const list = grouped[tier] || [];
         if (!list.length) return '';
-        const cols = tier.includes('Platinum') ? 'repeat(2,1fr)' : tier.includes('Gold') ? 'repeat(3,1fr)' : 'repeat(2,1fr)';
+        const cols = tier.includes('Platinum') ? 'repeat(2,1fr)' : tier.includes('Gold') ? 'repeat(3,1fr)' : 'repeat(3,1fr)';
         return `<div class="sponsor-tier">
           <h2>${tier}</h2>
           <div style="display:grid;grid-template-columns:${cols};gap:1.5rem;">
