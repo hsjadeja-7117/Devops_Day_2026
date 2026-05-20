@@ -110,7 +110,6 @@
 <!-- old code is above  -->
 
 <!-- latest code here -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,28 +137,6 @@
     <section class="bg-white">
       <div class="container">
         <div class="tickets-grid" id="tickets-grid"></div>
-
-        <div class="info-card" style="max-width:42rem;margin:3rem auto 0;">
-          <h2 style="margin-bottom:1.5rem;">Note</h2>
-          <h3 style="margin-bottom:.5rem;">🎟️ Bulk Booking Discounts:</h3>
-          <div class="grid-3" style="margin-bottom:1.5rem; display: flex; gap: 1rem; justify-content: center;">
-            <div
-              style="background:#fff7ed;border:1px solid #fed7aa;border-radius:.5rem;padding:.75rem;text-align:center; flex: 1;">
-              <div style="font-size:1.5rem;font-weight:800;color:#ea580c;">10% OFF</div>
-              <div style="font-size:.875rem;color:#6b7280;">On 10 to 20 tickets</div>
-            </div>
-            <div
-              style="background:#fff7ed;border:1px solid #fed7aa;border-radius:.5rem;padding:.75rem;text-align:center; flex: 1;">
-              <div style="font-size:1.5rem;font-weight:800;color:#ea580c;">20% OFF</div>
-              <div style="font-size:.875rem;color:#6b7280;">On 20+ tickets</div>
-            </div>
-          </div>
-          <p>📩 For bulk bookings &amp; queries: <a href="mailto:awsugahm@gmail.com" class="text-orange"
-              style="font-weight:500;">awsugahm@gmail.com</a></p>
-          <div class="alert-orange" style="margin-top:1.5rem;">
-            <p><strong>⚠️ GST extra. Discounts apply on base ticket price only.</strong></p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -179,12 +156,12 @@
   <script>
     const TIERS = [
       {
-        id: 'super-early-bird', name: 'Super Early Bird', price: 599, currency: 'INR', desc: 'Get the best value by securing your spot before everyone else.', sold: 100, limit: 10,
+        id: 'super-early-bird', name: 'Super Early Bird', price: 599, currency: 'INR', desc: 'for the earliest supporters', sold: 100, limit: 10,
         includes: ['Event Swags & Goodies', 'Breakfast', 'Lunch', 'Hi-Tea', 'Full Conference Access', 'Networking Opportunities'],
         url: ' https://konfhub.com/awsugahm-acdahm2026-devops-edition', featured: false
       },
       {
-        id: 'early-bird', name: 'Early Bird', price: 799, currency: 'INR', desc: 'The Early Bird ticket is perfect for attendees who want to secure their spot at AWS Community Day Ahmedabad 2026 — DevOps Edition before regular pricing begins. Enjoy full conference access, insightful DevOps and cloud-native sessions, networking opportunities with industry experts, and all standard event benefits at a discounted rate.',
+        id: 'early-bird', name: 'Early Bird', price: 799, currency: 'INR', desc: 'grab your tickits early!',
         includes: ['Event Swags & Goodies', 'Breakfast', 'Lunch', 'Hi-Tea', 'Full Conference Access', 'Networking Opportunities'],
         url: ' https://konfhub.com/awsugahm-acdahm2026-devops-edition', featured: false
       },
@@ -194,7 +171,7 @@
         url: ' https://konfhub.com/awsugahm-acdahm2026-devops-edition', featured: false
       },
       {
-        id: 'golden', name: 'Golden Ticket', price: 5000, currency: 'INR', desc: 'The premium experience pass for dedicated cloud professionals, tech leaders, and community champions.', sold: 0, limit: 500, note: 'Only few tickets left!',
+        id: 'golden', name: 'Golden Ticket', price: 5000, currency: 'INR', desc: 'elivate your experience & support the community.', sold: 0, limit: 500,
         includes: ['Premium Swags & Exclusive Goodies', 'First Row Seating', 'Lunch at Speaker Area', 'Breakfast', 'Lunch', 'Hi-Tea', 'Full Conference Access', 'Exclusive Networking Opportunities'],
         url: ' https://konfhub.com/awsugahm-acdahm2026-devops-edition', featured: true
       },
@@ -208,12 +185,14 @@
         ${t.featured ? '<div class="featured-badge">Most Popular</div>' : ''}
         <div class="body">
           <h3>${t.name}</h3>
-          <p class="desc">${t.desc}</p>
           <div class="price">${priceStr}</div>
           ${t.note ? `<p style="font-size:.875rem;color:#dc2626;font-weight:500;margin-bottom:.5rem;">${t.note}</p>` : ''}
           ${soldOut
           ? '<span class="sold-out">Sold Out</span>'
           : `<a href="${t.url}" target="_blank" rel="noopener" class="buy-btn ${t.featured ? 'filled' : 'outline'}">Buy Tickets</a>`}
+          
+          <p class="desc" style="margin-top: 1rem; margin-bottom: 1.5rem;">${t.desc}</p>
+          
           <p style="font-size:.875rem;font-weight:600;margin-bottom:.75rem;">What's Included:</p>
           <ul class="includes-list">${t.includes.map(i => `<li>${i}</li>`).join('')}</ul>
         </div>
