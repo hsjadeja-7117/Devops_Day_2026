@@ -72,7 +72,7 @@
 /*This below is correct in order to the formating of the speakers cards*/
       
 grid.innerHTML = speakers.map(s => `
-  <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
+  <a href="${speakerUrl(s)}" class="card speaker-card">
     <div class="photo">
       ${s.photo_url
         ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`

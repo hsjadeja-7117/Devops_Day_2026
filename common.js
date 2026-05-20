@@ -1,19 +1,19 @@
 /* ===== NAVIGATION ===== */
 const NAV_LINKS = [
-  { href: 'index.html', label: 'Home' },
-  { href: 'about.html', label: 'Who We Are' },
-  { href: 'schedule.html', label: 'Schedule' },
-  { href: 'speakers.html', label: 'Speakers' },
-  { href: 'sponsors.html', label: 'Sponsors' },
-  { href: 'tickets.html', label: 'Tickets' },
-  { href: 'venue.html', label: 'Venue' },
-  { href: 'volunteers.html', label: 'Volunteer' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'Who We Are' },
+  { href: '/schedule', label: 'Schedule' },
+  { href: '/speakers', label: 'Speakers' },
+  { href: '/sponsors', label: 'Sponsors' },
+  { href: '/tickets', label: 'Tickets' },
+  { href: '/venue', label: 'Venue' },
+  { href: '/volunteers', label: 'Volunteer' },
 ];
 
 function renderHeader() {
-  const cur = location.pathname.split('/').pop() || 'index.html';
+  const cur = location.pathname.replace(/\/$/, '') || '/';
   const links = NAV_LINKS.map(l =>
-    `<a href="${l.href}" class="${cur === l.href ? 'active' : ''}">${l.label}</a>`
+    `<a href="${l.href}" class="${(l.href === '/' ? cur === '' || cur === '/' : cur === l.href || cur.startsWith(l.href + '/')) ? 'active' : ''}">${l.label}</a>`
   ).join('');
   const mobileLinks = NAV_LINKS.map(l =>
     `<a href="${l.href}" onclick="closeMobileNav()">${l.label}</a>`
@@ -21,19 +21,19 @@ function renderHeader() {
 
   document.getElementById('site-header').innerHTML = `
     <div class="header-inner">
-      <a href="index.html" class="site-logo">
+      <a href="/" class="site-logo">
         <img src="assets/logo-devops-edition.png" alt="AWS Community Day Ahmedabad 2026" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span style="display:none;font-weight:800;color:#ea580c;font-size:1rem;">ACD Ahmedabad 2026</span>
       </a>
       <nav class="desktop-nav">${links}</nav>
-      <a href="tickets.html" class="btn-ticket-header">Get Tickets</a>
+      <a href="/tickets" class="btn-ticket-header">Get Tickets</a>
       <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="mobile-nav" id="mobile-nav">
       ${mobileLinks}
-      <a href="tickets.html" class="btn-mobile-ticket" onclick="closeMobileNav()">Get Tickets</a>
+      <a href="/tickets" class="btn-mobile-ticket" onclick="closeMobileNav()">Get Tickets</a>
     </nav>`;
 }
 
@@ -55,20 +55,20 @@ function renderFooter() {
         <div>
           <h4>Event</h4>
           <ul>
-            <li><a href="venue.html">Venue &amp; Location</a></li>
-            <li><a href="speakers.html">Speakers</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="travel.html">Travel</a></li>
-            <li><a href="badge.html">Badge</a></li>
+            <li><a href="/venue">Venue &amp; Location</a></li>
+            <li><a href="/speakers">Speakers</a></li>
+            <li><a href="/schedule">Schedule</a></li>
+            <li><a href="/travel">Travel</a></li>
+            <li><a href="/badge">Badge</a></li>
           </ul>
         </div>
         <div>
           <h4>Community</h4>
           <ul>
-            <li><a href="sponsors.html">Sponsors</a></li>
-            <li><a href="volunteers.html">Volunteer</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/sponsors">Sponsors</a></li>
+            <li><a href="/volunteers">Volunteer</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -84,9 +84,9 @@ function renderFooter() {
       <div class="footer-bottom">
         <p>© 2026 AWS User Group Ahmedabad. All rights reserved.</p>
         <div class="footer-bottom-links">
-          <a href="code-of-conduct.html">Code of Conduct</a>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="accessibility.html">Accessibility</a>
+          <a href="/code-of-conduct">Code of Conduct</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/accessibility">Accessibility</a>
         </div>
       </div>
     </div>`;
@@ -118,6 +118,22 @@ function startCountdown(targetDate, containerId) {
 /* ===== INITIALS HELPER ===== */
 function getInitials(name) {
   return (name || '').trim().split(/\s+/).map(n => n[0]).join('').slice(0,2).toUpperCase();
+}
+
+/* ===== SLUG HELPER ===== */
+function slugify(name) {
+  return (name || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')   // remove special chars
+    .replace(/\s+/g, '-')        // spaces → hyphens
+    .replace(/-+/g, '-');        // collapse multiple hyphens
+}
+
+/* ===== SPEAKER URL HELPER ===== */
+function speakerUrl(speaker) {
+  const slug = speaker.slug || slugify(speaker.name);
+  return `/speakers/${slug}`;
 }
 
 /* ===== INIT ===== */

@@ -21,8 +21,8 @@
         <h1>AWS Community Day Ahmedabad<span> 2026</span><br><span style="font-size: 0.75em; color: #ea580c;">DevOps Edition</span></h1>
         <p class="subtitle">Connect with cloud professionals and students. Learn from industry leaders. Shape the future of modern DevOps on AWS.</p>
         <div class="cta-group">
-          <a href="tickets.html" class="btn-primary">Get Your Tickets →</a>
-          <a href="speakers.html" class="btn-outline">See Speakers</a>
+          <a href="/tickets" class="btn-primary">Get Your Tickets →</a>
+          <a href="/speakers" class="btn-outline">See Speakers</a>
         </div>
         <div class="event-meta">
           <div><div class="icon">📅</div><p>July 25, 2026</p></div>
@@ -48,7 +48,7 @@
           <p class="loading">Loading sponsors...</p>
         </div>
         <div class="text-center" style="margin-top:2rem;">
-          <a href="sponsors.html" class="text-orange" style="font-weight:600;">Become a Sponsor →</a>
+          <a href="/sponsors" class="text-orange" style="font-weight:600;">Become a Sponsor →</a>
         </div>
       </div>
     </section>
@@ -91,7 +91,7 @@
         const sg = document.getElementById('speakers-grid');
         if (speakers.length) {
           sg.innerHTML = speakers.map(s => `
-            <a href="speaker-detail.html?id=${s.id}" class="card speaker-card">
+            <a href="${speakerUrl(s)}" class="card speaker-card">
               <div class="photo">
                 ${s.photo_url
                   ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`
@@ -105,7 +105,7 @@
               </div>
             </a>`).join('');
           document.getElementById('view-all-speakers').innerHTML =
-            `<a href="speakers.html" class="text-orange" style="font-weight:600;display:inline-flex;align-items:center;gap:.5rem;">View All Speakers →</a>`;
+            `<a href="/speakers" class="text-orange" style="font-weight:600;display:inline-flex;align-items:center;gap:.5rem;">View All Speakers →</a>`;
         } else {
           sg.innerHTML = '<p class="loading">Speakers coming soon!</p>';
         }

@@ -3,43 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Speaker | AWS Community Day 2026</title>
-  <link rel="icon" href="assets/favicon.png" />
+  <title>Speaker | AWS Community Day Ahmedabad 2026</title>
+  <meta name="description" content="Learn more about this speaker at AWS Community Day Ahmedabad 2026 – DevOps Edition." />
+  <link rel="canonical" href="" id="canonical-link" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
   <main>
     <div class="container" style="max-width:56rem;padding-top:3rem;padding-bottom:3rem;">
-<a href="speakers.html" class="back-link">← Back to Speakers</a>
+<a href="/speakers" class="back-link">← Back to Speakers</a>
       <div id="speaker-detail"><p class="loading">Loading...</p></div>
     </div>
   </main>
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
+    // Resolve speaker from URL path slug (/speakers/vishal-alhat) or fallback to ?id= query param
+    const pathParts = location.pathname.split('/').filter(Boolean);
+    const urlSlug = pathParts[0] === 'speakers' ? pathParts[1] : null;
     const params = new URLSearchParams(location.search);
     const speakerId = params.get('id');
-    const speakerIdx = parseInt(params.get('idx') || '-1', 10);
 
-    fetch('data.json').then(r => r.json()).then(data => {
+    // Set canonical URL
+    const canonicalLink = document.getElementById('canonical-link');
+    if (canonicalLink) canonicalLink.href = location.origin + location.pathname;
+
+    fetch('/data.json').then(r => r.json()).then(data => {
       const speakers = data.speakers || [];
-      let speaker = speakers.find(s => s.id === speakerId);
-      if (!speaker && speakerIdx >= 0) speaker = speakers[speakerIdx];
+      let speaker = null;
+
+      if (urlSlug) {
+        // Match by slug field or by slugifying the name
+        speaker = speakers.find(s => (s.slug || slugify(s.name)) === urlSlug);
+      }
+      // Fallback: match by ?id= query param
+      if (!speaker && speakerId) {
+        speaker = speakers.find(s => s.id === speakerId);
+      }
+
       const el = document.getElementById('speaker-detail');
       if (!speaker) {
-        el.innerHTML = `<p style="color:#6b7280;">Speaker not found.</p><a href="speaker.html" class="text-orange" style="margin-top:1rem;display:inline-block;">Back to Speakers</a>`;
+        el.innerHTML = `<p style="color:#6b7280;">Speaker not found.</p><a href="/speakers" class="text-orange" style="margin-top:1rem;display:inline-block;">Back to Speakers</a>`;
         return;
       }
-      document.title = `${speaker.name.trim()} | AWS Community Day 2026`;
+
+      // SEO: update title and meta description dynamically
+      const speakerSlug = speaker.slug || slugify(speaker.name);
+      document.title = `${speaker.name.trim()} – ${speaker.title || 'Speaker'} | AWS Community Day Ahmedabad 2026`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.content = `${speaker.name.trim()}, ${speaker.title || 'Speaker'} at ${speaker.organization || 'AWS Community Day Ahmedabad 2026'}. ${speaker.talk_title && speaker.talk_title !== 'TBA' ? 'Talk: ' + speaker.talk_title + '.' : ''} Join us on July 25, 2026 in Ahmedabad.`;
+      }
+      // Redirect to clean URL if accessed via query param
+      if (!urlSlug && speakerId) {
+        history.replaceState(null, '', `/speakers/${speakerSlug}`);
+        if (canonicalLink) canonicalLink.href = location.origin + `/speakers/${speakerSlug}`;
+      }
+
       el.innerHTML = `
         <div class="speaker-detail-grid">
           <div>
             ${speaker.photo_url
               ? `<img src="${speaker.photo_url}" alt="${speaker.name}" class="speaker-detail-img" onerror="this.outerHTML='<div class=initials style=width:100%;aspect-ratio:1/1;border-radius:.75rem;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:4rem;font-weight:700>${getInitials(speaker.name)}</div>'">`
               : `<div style="width:100%;aspect-ratio:1/1;border-radius:.75rem;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:4rem;font-weight:700;">${getInitials(speaker.name)}</div>`}
-            ${speaker.linkedin_url ? `<div style="margin-top:1rem;"><a href="${speaker.linkedin_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;color:#0a66c2;font-size:.875rem;text-decoration:none;font-weight:600;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg> LinkedIn Profile</a></div>` : ''}
+            ${speaker.linkedin_url ? `<div style="margin-top:1rem;"><a href="${speaker.linkedin_url.trim()}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.35rem;color:#0a66c2;font-size:.875rem;text-decoration:none;font-weight:600;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg> LinkedIn Profile</a></div>` : ''}
           </div>
           <div>
             <h1 style="font-size:2.25rem;margin-bottom:.5rem;">${speaker.name.trim()}</h1>
@@ -62,3 +92,4 @@
   </script>
 </body>
 </html>
+
