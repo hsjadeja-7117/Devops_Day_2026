@@ -21,23 +21,21 @@
   <footer id="site-footer"></footer>
   <script src="/common.js"></script>
   <script>
-    // Resolve speaker from URL path slug (/speakers/vishal-alhat) or fallback to ?id= query param
-    const pathParts = location.pathname.split('/').filter(Boolean);
-    const urlSlug = pathParts[0] === 'speakers' ? pathParts[1] : null;
     const params = new URLSearchParams(location.search);
+    const speakerSlug = params.get('speaker');
     const speakerId = params.get('id');
 
     // Set canonical URL
     const canonicalLink = document.getElementById('canonical-link');
-    if (canonicalLink) canonicalLink.href = location.origin + location.pathname;
+    if (canonicalLink) canonicalLink.href = location.origin + location.pathname + location.search;
 
     fetch('/data.json').then(r => r.json()).then(data => {
       const speakers = data.speakers || [];
       let speaker = null;
 
-      if (urlSlug) {
+      if (speakerSlug) {
         // Match by slug field or by slugifying the name
-        speaker = speakers.find(s => (s.slug || slugify(s.name)) === urlSlug);
+        speaker = speakers.find(s => (s.slug || slugify(s.name)) === speakerSlug);
       }
       // Fallback: match by ?id= query param
       if (!speaker && speakerId) {
@@ -51,16 +49,16 @@
       }
 
       // SEO: update title and meta description dynamically
-      const speakerSlug = speaker.slug || slugify(speaker.name);
+      const actualSlug = speaker.slug || slugify(speaker.name);
       document.title = `${speaker.name.trim()} – ${speaker.title || 'Speaker'} | AWS Community Day Ahmedabad 2026`;
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.content = `${speaker.name.trim()}, ${speaker.title || 'Speaker'} at ${speaker.organization || 'AWS Community Day Ahmedabad 2026'}. ${speaker.talk_title && speaker.talk_title !== 'TBA' ? 'Talk: ' + speaker.talk_title + '.' : ''} Join us on July 25, 2026 in Ahmedabad.`;
       }
-      // Redirect to clean URL if accessed via query param
-      if (!urlSlug && speakerId) {
-        history.replaceState(null, '', `/speakers/${speakerSlug}`);
-        if (canonicalLink) canonicalLink.href = location.origin + `/speakers/${speakerSlug}`;
+      // Redirect to clean query param if accessed via UUID query param
+      if (!speakerSlug && speakerId) {
+        history.replaceState(null, '', `/speaker-detail/?speaker=${actualSlug}`);
+        if (canonicalLink) canonicalLink.href = location.origin + `/speaker-detail/?speaker=${actualSlug}`;
       }
 
       el.innerHTML = `

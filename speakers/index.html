@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Speakers | AWS Community Day 2026</title>
   <meta name="description" content="Meet the speakers at AWS Community Day 2026. Learn from industry experts sharing their knowledge on AWS and cloud technologies." />
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
@@ -44,9 +44,9 @@
     </section>
   </main>
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
-    fetch('data.json').then(r => r.json()).then(data => {
+    fetch('/data.json').then(r => r.json()).then(data => {
       const speakers = data.speakers || [];
       const grid = document.getElementById('speakers-grid');
       if (!speakers.length) { grid.innerHTML = '<p class="loading">More speakers coming soon...</p>'; return; }
@@ -54,7 +54,7 @@
 /* this below block of css is not letting the structure looking good and well formated so commented out*/
       
       // grid.innerHTML = speakers.map(s => `
-      //   <a href="speaker-detail.html?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
+      //   <a href="/speaker-detail?id=${encodeURIComponent(s.id)}&idx=${data.speakers.indexOf(s)}" class="card speaker-card">
       //     <div class="photo">
       //       ${s.photo_url
       //         ? `<img src="${s.photo_url}" alt="${s.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=initials>${getInitials(s.name)}</div>'">`

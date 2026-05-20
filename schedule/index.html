@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schedule | AWS Community Day 2026</title>
   <meta name="description" content="Check out the agenda for AWS Community Day 2026. Three tracks of sessions covering Serverless, Containers, AI/ML, Security, and more." />
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
@@ -26,9 +26,9 @@
     </section>
   </main>
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
-    fetch('data.json').then(r => r.json()).then(data => {
+    fetch('/data.json').then(r => r.json()).then(data => {
       const schedules = data.schedules || [];
       const el = document.getElementById('schedule-content');
       if (!schedules.length) { el.innerHTML = '<p class="loading">Coming Soon</p>'; return; }
@@ -88,9 +88,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schedule | AWS Community Day 2026</title>
   <meta name="description" content="Check out the agenda for AWS Community Day 2026. Sessions covering DevOps with AI on AWS and Hands-on Workshops." />
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
@@ -109,9 +109,9 @@
     </section>
   </main>
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
-    fetch('data.json').then(r => r.json()).then(data => {
+    fetch('/data.json').then(r => r.json()).then(data => {
       const schedules = data.schedules || [];
       const el = document.getElementById('schedule-content');
       if (!schedules.length) { el.innerHTML = '<p class="loading">Coming Soon</p>'; return; }

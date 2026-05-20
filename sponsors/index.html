@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sponsors | AWS Community Day 2026</title>
   <meta name="description" content="Learn about our sponsors for AWS Community Day 2026. Interested in sponsoring? Check out our sponsorship packages." />
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
@@ -27,18 +27,18 @@
       <div class="container" style="max-width:48rem;text-align:center;">
         <h2 style="margin-bottom:1rem;">Become a Sponsor</h2>
         <p style="margin-bottom:2rem;">Interested in supporting AWS Community Day DevOps Edition 2026? We offer various sponsorship packages to match your business goals and budget.</p>
-        <a href="assets/ACD2026(DEVOPS EDITION)_Sponsorship_Deck.pdf" download class="btn-primary" style="display:inline-flex;">Download Sponsorship Prospectus</a>
+        <a href="/assets/ACD2026(DEVOPS EDITION)_Sponsorship_Deck.pdf" download class="btn-primary" style="display:inline-flex;">Download Sponsorship Prospectus</a>
         <p style="margin-top:1rem;font-size:.875rem;">Questions? Contact us at <a href="mailto:awsugahm@gmail.com" class="text-orange">awsugahm@gmail.com</a></p>
       </div>
     </section>
   </main>
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
     const TIERS = ["Platinum Sponsors","Gold Sponsors","Silver Sponsors","Booth Sponsors","Special Partner","Community Partners","Ticketing Partners","Venue Partners"];
     const TIER_COLS = { "Platinum Sponsors":"repeat(2,1fr)", "Gold Sponsors":"repeat(2,1fr)", default:"repeat(2,1fr)" };
 
-    fetch('data.json').then(r => r.json()).then(data => {
+    fetch('/data.json').then(r => r.json()).then(data => {
       const sponsors = data.sponsors || [];
       const el = document.getElementById('sponsors-content');
       if (!sponsors.length) { el.innerHTML = '<p class="loading">Sponsors coming soon.</p>'; return; }

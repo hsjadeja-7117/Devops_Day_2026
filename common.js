@@ -1,4 +1,3 @@
-/* ===== NAVIGATION ===== */
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'Who We Are' },
@@ -13,7 +12,7 @@ const NAV_LINKS = [
 function renderHeader() {
   const cur = location.pathname.replace(/\/$/, '') || '/';
   const links = NAV_LINKS.map(l =>
-    `<a href="${l.href}" class="${(l.href === '/' ? cur === '' || cur === '/' : cur === l.href || cur.startsWith(l.href + '/')) ? 'active' : ''}">${l.label}</a>`
+    `<a href="${l.href}" class="${cur === l.href ? 'active' : ''}">${l.label}</a>`
   ).join('');
   const mobileLinks = NAV_LINKS.map(l =>
     `<a href="${l.href}" onclick="closeMobileNav()">${l.label}</a>`
@@ -22,7 +21,7 @@ function renderHeader() {
   document.getElementById('site-header').innerHTML = `
     <div class="header-inner">
       <a href="/" class="site-logo">
-        <img src="assets/logo-devops-edition.png" alt="AWS Community Day Ahmedabad 2026" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img src="/assets/logo-devops-edition.png" alt="AWS Community Day Ahmedabad 2026" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span style="display:none;font-weight:800;color:#ea580c;font-size:1rem;">ACD Ahmedabad 2026</span>
       </a>
       <nav class="desktop-nav">${links}</nav>
@@ -133,7 +132,7 @@ function slugify(name) {
 /* ===== SPEAKER URL HELPER ===== */
 function speakerUrl(speaker) {
   const slug = speaker.slug || slugify(speaker.name);
-  return `/speakers/${slug}`;
+  return `/speaker-detail/?speaker=${slug}`;
 }
 
 /* ===== INIT ===== */

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Volunteer | AWS Community Day 2026</title>
   <meta name="description" content="Here is our rockstar volunteer team for AWS Community Day Ahmedabad 2026." />
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
@@ -24,9 +24,9 @@
     </section>
   </main>
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
-    fetch('data.json').then(r => r.json()).then(data => {
+    fetch('/data.json').then(r => r.json()).then(data => {
       const volunteers = data.volunteers || [];
       const grid = document.getElementById('vol-grid');
       if (!volunteers.length) { grid.innerHTML = '<p class="loading" style="grid-column:1/-1;">No volunteers yet.</p>'; return; }

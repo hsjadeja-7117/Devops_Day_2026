@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AWS Community Day Ahmedabad 2026 - DevOps Edition</title>
   <meta name="description" content="Join AWS Community Day 2026 on 25th July in Ahmedabad. Learn from industry leaders, connect with fellow cloud enthusiasts, and explore the latest in DevOps and AI on AWS." />
-  <link rel="icon" href="assets/favicon.png" />
+  <link rel="icon" href="/assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header id="site-header"></header>
@@ -16,7 +16,7 @@
   <main>
     <section class="home-hero">
       <div class="container">
-        <img src="assets/badge.png" alt="AWS Community Day Ahmedabad Badge" class="badge-img" />
+        <img src="/assets/badge.png" alt="AWS Community Day Ahmedabad Badge" class="badge-img" />
         <div class="tag">✨ Presenting</div>
         <h1>AWS Community Day Ahmedabad<span> 2026</span><br><span style="font-size: 0.75em; color: #ea580c;">DevOps Edition</span></h1>
         <p class="subtitle">Connect with cloud professionals and students. Learn from industry leaders. Shape the future of modern DevOps on AWS.</p>
@@ -77,13 +77,13 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="common.js"></script>
+  <script src="/common.js"></script>
   <script>
     // Countdown set to the new July 25th date
     startCountdown('2026-07-25T08:00:00+05:30', 'countdown');
 
     // Load data
-    fetch('data.json')
+    fetch('/data.json')
       .then(r => r.json())
       .then(data => {
         // Speakers
