@@ -375,11 +375,26 @@ section { padding: 3rem 0; }
 .vol-card .body h3 { font-size: 0.875rem; font-weight: 600; color: var(--gray-900); }
 
 /* ===== SPONSOR TIER GRID ===== */
-.sponsor-tier { margin-bottom: 4rem; }
+/* .sponsor-tier { margin-bottom: 4rem; }
 .sponsor-tier h2 { text-align: center; font-size: 1.5rem; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 2rem; }
 .sponsor-tier-platinum { grid-template-columns: repeat(2, 1fr); }
 .sponsor-tier-gold { grid-template-columns: repeat(3, 1fr); }
-.sponsor-tier-other { grid-template-columns: repeat(4, 1fr); }
+.sponsor-tier-other { grid-template-columns: repeat(4, 1fr); } */
+
+/* ===== SPONSOR TIER GRID ===== */
+.sponsor-tier { margin-bottom: 4rem; }
+.sponsor-tier h2 { text-align: center; font-size: 1.5rem; color: var(--orange); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 2rem; }
+
+.sponsor-tier-platinum { grid-template-columns: repeat(2, 1fr); }
+.sponsor-tier-gold { grid-template-columns: repeat(3, 1fr); }
+
+/* UPDATED: Forces 3 columns, centers them, and lets them stretch comfortably inline */
+.sponsor-tier-other { 
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); 
+  justify-content: center;
+  max-width: 64rem;
+  margin: 0 auto;
+}
 .sponsor-card {
   display: flex; 
   flex-direction: column; 
