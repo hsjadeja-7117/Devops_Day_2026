@@ -139,18 +139,18 @@
   "description": "Community Partner – ACM Ahmedabad Chapter"
 },
 {
-  "company_name": "Special Partner 2",
-  "logo_url": "assets/special-partner-2.png",
-  "website_url": "https://example.com",
+  "company_name": "Ahmedabad Management Association (AMA)",
+  "logo_url": "assets/AMA-Logo.svg",
+  "website_url": "https://www.amaindia.org/",
   "tier": "Special Partner",
-  "description": "Brief description of Special Partner 2 properties and contributions."
+  "description": "Co-Organizing Partner – Ahmedabad Management Association (AMA)"
 },
 {
-  "company_name": "Special Partner 3",
-  "logo_url": "assets/special-partner-3.png",
-  "website_url": "https://example.com",
+  "company_name": "Computer Sociaety of India Ahmedabad Chapter",
+  "logo_url": "assets/CSI_logo_file.enc",
+  "website_url": "https://www.csiahd.org/",
   "tier": "Special Partner",
-  "description": "Brief description of Special Partner 3 properties and contributions."
+  "description": "Community Partner – Computer Society of India (CSI), Ahmedabad Chapter"
 }],
   "schedules": [
     {
