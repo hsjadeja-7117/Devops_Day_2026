@@ -185,14 +185,13 @@
         ${t.featured ? '<div class="featured-badge">Most Popular</div>' : ''}
         <div class="body">
           <h3>${t.name}</h3>
-          
-          <p class="desc" style="margin-top: 0.25rem; margin-bottom: 1rem; min-height: auto;">${t.desc}</p>
-          
           <div class="price">${priceStr}</div>
           ${t.note ? `<p style="font-size:.875rem;color:#dc2626;font-weight:500;margin-bottom:.5rem;">${t.note}</p>` : ''}
           ${soldOut
           ? '<span class="sold-out">Sold Out</span>'
           : `<a href="${t.url}" target="_blank" rel="noopener" class="buy-btn ${t.featured ? 'filled' : 'outline'}">Buy Tickets</a>`}
+          
+          <p class="desc" style="margin-top: 1rem; margin-bottom: 1.5rem;">${t.desc}</p>
           
           <p style="font-size:.875rem;font-weight:600;margin-bottom:.75rem;">What's Included:</p>
           <ul class="includes-list">${t.includes.map(i => `<li>${i}</li>`).join('')}</ul>
